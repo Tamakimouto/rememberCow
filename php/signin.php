@@ -1,23 +1,25 @@
 <?php
-session_start();
-include 'database.php';//for connection
 
-$un = $_POST['username'];//getting info from the index.php
+session_start();
+include 'database.php';
+
+$un = $_POST['username'];
 $pw = $_POST['password'];
 
-//$sql = "INSERT INTO info (username, password) VALUES ('$un', '$pw')";
-//$success = $conn->query($sql); //tells the connection to execute the query
-$sql = "SELECT * FROM info WHERE username = '$un' AND password = '$pw'";
-$success = $conn->query($sql); //tells the connection to execute the query
+$sql = "SELECT * FROM users WHERE username = '$un' AND password = '$pw'";
+$success = $conn->query($sql);
 
-if(!$result = $success->fetch_assoc())//if no results===============================
-{
-  echo "Username or password is incorrect";
-}
-else
-{
-    $_SESSION['first_name'] = $result['first_name'];
-    $_SESSION['id'] = $result['id'];
+$res = array();
+
+if (!$result = $success->fetch_assoc()) {
+    $res["error"] = "Username or password is incorrect";
+} else {
+    $_SESSION["user"] = $un;
+    $res["location"] = "php/list.php";
+    $res["error"] = "";
 }
 
-header("Location: list.php");
+header("Content-Type: application/json");
+echo json_encode($res);
+
+?>

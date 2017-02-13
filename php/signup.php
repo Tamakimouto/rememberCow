@@ -1,13 +1,19 @@
 <?php
+
 session_start();
 include 'database.php';
 
-$un = $_POST['username'];//getting info from the index.php
+$un = $_POST['username'];
 $pw = $_POST['password'];
-$fn = $_POST['firstname'];
-$ln = $_POST['lastname'];
 
-$sql = "INSERT INTO info (username, password, first_name, last_name) VALUES ('$un', '$pw', '$fn', '$ln')";
-$success = $conn->query($sql); //tells the connection to execute the query
+$sql = "INSERT INTO users (username, password) VALUES ('$un', '$pw')";
+$success = $conn->query($sql);
 
-header("Location: index.php");
+$_SESSION['user'] = $un;
+
+$result = array("Location" => "php/list.php");
+
+header("Content-Type: application/json");
+echo json_encode($result);
+
+?>
