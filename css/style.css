@@ -67,3 +67,24 @@ img {
     font-size: 9pt;
     position: absolute;
 }
+
+input[type="text"],
+input[type="password"] {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid black !important;
+}
+
+button {
+    border: none !important;
+    background-color: black !important;
+    color: white !important;
+}
+
+.listhead {
+    margin-bottom: 5vh;
+}
+
+.listhead:hover {
+    cursor: pointer;
+}

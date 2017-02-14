@@ -19,7 +19,7 @@
         <div class="container-fluid text-center">
 
             <div class="functional-overlay" id="list">
-                <div class="col-xs-12 text-center">
+                <div class="col-xs-12 text-center listhead" @click="exit">
                     <h1> {{ heading }} </h1>
                     <p> {{ subhead }} </p>
                 </div>

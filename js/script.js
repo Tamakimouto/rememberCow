@@ -83,6 +83,15 @@ $(function() {
             pop: function(index) {
                 this.todolist.splice(index, 1);
                 list.update();
+            },
+            exit: function() {
+                $.ajax({
+                    type: "POST",
+                    url: "logout.php",
+                    success: function() {
+                        window.location = "../start.php";
+                    }
+                });
             }
         },
         mounted: function() {
