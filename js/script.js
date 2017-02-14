@@ -46,6 +46,7 @@ $(function() {
                         window.location = res["location"];
                     },
                     error: function(req, textStatus, err) {
+                        console.log("error has occured");
                         console.log(textStatus + ": " + err);
                     }
                 });

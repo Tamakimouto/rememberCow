@@ -12,20 +12,19 @@ $pw = $_POST['password'];
  * Password: ^(?=.*[a-z])([0-9a-z]){3,8}$
  * Username: ^(?=.{6,12}$)([0-9])(.*)([^0-9A-Za-z]+)$
  */
-if(preg_match("~^(?=.{6,12}$)([0-9])(.*)([^0-9A-Za-z]+)$~", $pw) && (preg_match("~^(?=.*[a-z])([0-9a-z]){3,8}$~", $un))){
+if (preg_match("~^(?=.{6,12}$)([0-9])(.*)([^0-9A-Za-z]+)$~", $pw) && (preg_match("~^(?=.*[a-z])([0-9a-z]){3,8}$~", $un))){
     $sql = "INSERT INTO users (username, password) VALUES ('$un', '$pw')";
     $success = $conn->query($sql);
 
     $_SESSION['user'] = $un;
 
-    $result = array("Location" => "php/list.php");
+    $result = array("location" => "php/list.php");
 
     header("Content-Type: application/json");
     echo json_encode($result);
 }
-else{
-
-    header("Location: ../start.php");
+else {
+    header("Location: start.php");
 }
 
 ?>
